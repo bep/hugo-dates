@@ -1,0 +1,21 @@
+{{ template "dates" . }}
+
+{{ $tags := .Site.GetPage "tags" }}
+{{ $categories := .Site.GetPage "categories" }}
+
+{{ template "list" $tags }}
+{{ template "list" $categories }}
+
+{{ define "list"}}
+<h1>{{ template "dates" . }}</h1> 
+<ol>
+{{ range .Pages }}
+<li>
+    {{ .Kind }}|{{ .Title }}|Date: {{ .Date }}|Lastmod: {{ .Lastmod}}
+</li>
+{{ end }}
+</ol>
+{{ end }}
+{{ define "dates" }}
+{{ .Kind }}|{{ .Title }}|Date: {{ .Date }}|Lastmod: {{ .Lastmod}}
+{{ end }}
